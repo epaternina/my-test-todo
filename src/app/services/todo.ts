@@ -14,7 +14,7 @@ export class TodoService {
 
   tasks$ = this._tasks.asObservable();
   categories$ = this._categories.asObservable();
-  public canDelete = true;
+  public canDelete = false;
 
   constructor(private storage: Storage, private remoteConfig: RemoteConfig) {
     this.init();
@@ -28,6 +28,7 @@ export class TodoService {
   }
 
   async checkFeatureFlags() {
+    this.remoteConfig.settings.minimumFetchIntervalMillis = 0;
     try {
       await fetchAndActivate(this.remoteConfig);
       this.canDelete = getBoolean(this.remoteConfig, 'task_delete_enabled');
