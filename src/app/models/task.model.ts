@@ -1,7 +1,7 @@
 export interface Category {
   id: string;
   name: string;
-  color: string; // Para que se vea genial en la UI
+  color: string; 
 }
 
 export interface Task {

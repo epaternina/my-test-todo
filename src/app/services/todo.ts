@@ -74,7 +74,6 @@ export class TodoService {
     if (id === '1') return; // No borrar la general
     const newCats = this._categories.value.filter(c => c.id !== id);
     await this.saveCategories(newCats);
-    // Opcional: Mover tareas de esa categoría a 'General'
     const updatedTasks = this._tasks.value.map(t => t.categoryId === id ? {...t, categoryId: '1'} : t);
     await this.saveTasks(updatedTasks);
   }
